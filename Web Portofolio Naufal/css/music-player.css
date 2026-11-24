@@ -1,0 +1,784 @@
+/* ==============================================================================
+   CYBERPULSE MUSIC PLAYER & MUSIC LOUNGE STYLESHEET
+   ============================================================================== */
+
+/* ------------------------------------------------------------------------------
+   ANIMATIONS FOR AUDIO & VINYL
+   ------------------------------------------------------------------------------ */
+@keyframes spinVinyl {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounceEqualizer {
+  0%, 100% {
+    height: 3px;
+  }
+  50% {
+    height: 18px;
+  }
+}
+
+@keyframes pulseGlowRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+/* ------------------------------------------------------------------------------
+   FLOATING MINIMIZED PILL (Bottom Right)
+   ------------------------------------------------------------------------------ */
+.music-widget-wrapper {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+  font-family: var(--font-body);
+}
+
+.music-pill-mini {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glow);
+  padding: 0.6rem 1rem 0.6rem 0.6rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  max-width: 380px;
+}
+
+.music-pill-mini:hover {
+  border-color: var(--primary-light);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-glow-strong);
+}
+
+/* Mini Vinyl Disc */
+.mini-vinyl-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 10px var(--accent-glow);
+  flex-shrink: 0;
+}
+
+.mini-vinyl-wrapper.spinning {
+  animation: spinVinyl 6s linear infinite;
+}
+
+.mini-album-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mini-track-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-width: 150px;
+}
+
+.mini-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-artist {
+  font-size: 0.725rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mini Equalizer Bars */
+.mini-equalizer-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 18px;
+  padding: 0 4px;
+}
+
+.eq-bar {
+  width: 3px;
+  height: 4px;
+  background: var(--primary-light);
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.mini-equalizer-bars.active .bar-1 { animation: bounceEqualizer 0.8s ease-in-out infinite; }
+.mini-equalizer-bars.active .bar-2 { animation: bounceEqualizer 0.6s ease-in-out infinite 0.2s; }
+.mini-equalizer-bars.active .bar-3 { animation: bounceEqualizer 0.9s ease-in-out infinite 0.4s; }
+.mini-equalizer-bars.active .bar-4 { animation: bounceEqualizer 0.7s ease-in-out infinite 0.1s; }
+
+.mini-btn-play,
+.mini-btn-expand {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.mini-btn-play:hover,
+.mini-btn-expand:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ------------------------------------------------------------------------------
+   EXPANDED CYBERPULSE MUSIC CARD
+   ------------------------------------------------------------------------------ */
+.music-player-card {
+  display: none;
+  width: 360px;
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px var(--accent-glow);
+  overflow: hidden;
+  animation: fadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.music-player-card.open {
+  display: block;
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.player-header-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--primary-light);
+}
+
+.pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  display: inline-block;
+  box-shadow: 0 0 8px var(--success);
+}
+
+.btn-close-player {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-close-player:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.player-body {
+  padding: 1.5rem;
+}
+
+/* Large Vinyl Graphic */
+.vinyl-display {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.vinyl-outer-disc {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #111827;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), inset 0 0 0 4px #1f2937, 0 0 20px var(--accent-glow);
+  transition: transform 0.3s ease;
+}
+
+.vinyl-outer-disc.spinning {
+  animation: spinVinyl 8s linear infinite;
+}
+
+.vinyl-groove {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.vinyl-center-art {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+  position: relative;
+  z-index: 2;
+}
+
+/* Track Names & Like Row */
+.track-details-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.track-names {
+  flex: 1;
+  overflow: hidden;
+  padding-right: 0.5rem;
+}
+
+.player-track-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-track-artist {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.player-genre-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--primary-light);
+  border: 1px solid var(--border-glow);
+  display: inline-block;
+}
+
+.btn-like-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-like-track:hover {
+  border-color: #f43f5e;
+  transform: scale(1.05);
+}
+
+/* Progress Bar */
+.player-progress-area {
+  margin-bottom: 1.25rem;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: var(--radius-full);
+  transition: width 0.1s linear;
+}
+
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.35rem;
+}
+
+/* Control Buttons */
+.player-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.ctrl-btn {
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ctrl-btn:hover,
+.ctrl-btn.active {
+  color: var(--text-main);
+  background: var(--bg-surface-elevated);
+}
+
+.ctrl-btn.active {
+  color: var(--primary-light);
+}
+
+.btn-play-large {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 18px var(--accent-glow);
+  font-size: 1.3rem;
+}
+
+.btn-play-large:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 25px var(--accent-glow);
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+}
+
+/* Volume & Playlist Drawer Toggle */
+.player-footer-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.volume-slider-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.vol-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.vol-slider {
+  width: 75px;
+  height: 4px;
+  -webkit-appearance: none;
+  background: var(--bg-surface-elevated);
+  border-radius: 2px;
+  outline: none;
+}
+
+.vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  cursor: pointer;
+}
+
+.btn-playlist-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.775rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-playlist-toggle:hover {
+  color: var(--text-main);
+  border-color: var(--border-glow);
+}
+
+/* Playlist Drawer List */
+.playlist-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  margin-top: 0.5rem;
+}
+
+.playlist-drawer.open {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.playlist-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.5rem 0;
+}
+
+.playlist-track-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: rgba(30, 41, 59, 0.4);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.playlist-track-row:hover,
+.playlist-track-row.active {
+  background: rgba(99, 102, 241, 0.15);
+  border-left: 3px solid var(--primary);
+}
+
+.track-row-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow: hidden;
+}
+
+.track-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  width: 14px;
+}
+
+.track-row-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.track-row-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+}
+
+.track-row-artist {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.track-row-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.track-row-dur {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  color: var(--text-dim);
+}
+
+.btn-row-heart {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* ------------------------------------------------------------------------------
+   PAGE SECTION: MUSIC LOUNGE (#music-lounge)
+   ------------------------------------------------------------------------------ */
+.music-lounge-header-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.music-lounge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.music-card-item {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(12px);
+  position: relative;
+}
+
+.music-card-item:hover,
+.music-card-item.is-playing {
+  border-color: var(--border-glow);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+}
+
+.music-card-item.is-playing {
+  border-color: var(--primary);
+}
+
+.music-card-cover-wrap {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: #090d16;
+}
+
+.music-card-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.music-card-item:hover .music-card-cover {
+  transform: scale(1.05);
+}
+
+.music-card-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.85);
+  border: 2px solid var(--primary-light);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.music-card-play-overlay:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+  background: var(--primary);
+}
+
+.music-card-genre {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-subtle);
+  color: var(--primary-light);
+  backdrop-filter: blur(4px);
+}
+
+.music-card-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.music-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.music-card-artist {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.music-card-vibe {
+  font-size: 0.775rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.music-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.music-card-duration {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.btn-card-heart {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-size: 0.775rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-card-heart:hover {
+  border-color: #f43f5e;
+}
+
+/* ------------------------------------------------------------------------------
+   WELCOME MUSIC FLOATING BANNER
+   ------------------------------------------------------------------------------ */
+.music-welcome-prompt {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1400;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), var(--shadow-glow);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeInUp 0.5s ease;
+  max-width: 380px;
+}
+
+.prompt-icon {
+  font-size: 1.5rem;
+  animation: gentlePulse 2s infinite;
+}
+
+.prompt-text {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.prompt-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .music-widget-wrapper {
+    bottom: 16px;
+    right: 16px;
+  }
+  .music-player-card {
+    width: calc(100vw - 32px);
+    max-width: 360px;
+  }
+  .music-welcome-prompt {
+    display: none !important;
+  }
+}

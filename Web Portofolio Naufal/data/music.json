@@ -1,0 +1,67 @@
+[
+  {
+    "id": "track-1",
+    "title": "Midnight Lo-Fi Coding",
+    "artist": "Lofi Sleep Chill",
+    "album": "Code & Dreams Vol. 1",
+    "duration": "2:45",
+    "genre": "Lofi Hip-Hop",
+    "cover": "assets/images/music/cover-lofi.svg",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3",
+    "isFavorite": true,
+    "likes": 142,
+    "vibe": "Santai, relaks, cocok untuk deep coding tengah malam."
+  },
+  {
+    "id": "track-2",
+    "title": "Cyberpunk Neon Drive",
+    "artist": "Retro Synth Wave",
+    "album": "Night City 2088",
+    "duration": "3:12",
+    "genre": "Synthwave / Retrowave",
+    "cover": "assets/images/music/cover-synthwave.svg",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=synthwave-80s-110045.mp3",
+    "isFavorite": true,
+    "likes": 98,
+    "vibe": "Penuh energi, ketukan synth 80-an saat memecahkan bug sulit."
+  },
+  {
+    "id": "track-3",
+    "title": "Coffee Shop & Rain",
+    "artist": "Acoustic Chillhop",
+    "album": "Sunday Morning Vibes",
+    "duration": "2:30",
+    "genre": "Chillhop / Jazzhop",
+    "cover": "assets/images/music/cover-chillhop.svg",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=coffee-chill-out-15283.mp3",
+    "isFavorite": true,
+    "likes": 87,
+    "vibe": "Suasana kafe berhujan, piano lembut & ketukan hangat."
+  },
+  {
+    "id": "track-4",
+    "title": "Deep Focus Flow",
+    "artist": "Flow State Lab",
+    "album": "Binaural Synthesis",
+    "duration": "3:05",
+    "genre": "Ambient Electronic",
+    "cover": "assets/images/music/cover-ambient.svg",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/10/14/audio_9939f772dd.mp3?filename=ambient-piano-amp-strings-10711.mp3",
+    "isFavorite": false,
+    "likes": 64,
+    "vibe": "Frekuensi tenang tanpa vokal untuk konsentrasi 100%."
+  },
+  {
+    "id": "track-5",
+    "title": "Senja & Nostalgia Jakarta",
+    "artist": "Naufal's Indie Picks",
+    "album": "Indie Senja Playlist",
+    "duration": "3:20",
+    "genre": "Indie Pop / Folk",
+    "cover": "assets/images/music/cover-indie.svg",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/11/06/audio_c97bb690d5.mp3?filename=acoustic-guitar-ambient-chill-125547.mp3",
+    "isFavorite": true,
+    "likes": 115,
+    "vibe": "Melodi gitar akustik hangat peneman sore hari."
+  }
+]

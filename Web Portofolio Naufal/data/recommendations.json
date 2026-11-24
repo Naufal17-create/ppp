@@ -1,0 +1,18 @@
+[
+  {
+    "id": "rec-1",
+    "title": "Daydreaming",
+    "artist": "Radiohead",
+    "recommender": "Adit - Frontend Dev",
+    "date": "2026-11-20",
+    "note": "Cocok banget buat fokus coding tengah malam!"
+  },
+  {
+    "id": "rec-2",
+    "title": "Resonance",
+    "artist": "HOME",
+    "recommender": "Budi Pratama",
+    "date": "2026-11-22",
+    "note": "Lagu synthwave legendaris penambah mood kerja."
+  }
+]

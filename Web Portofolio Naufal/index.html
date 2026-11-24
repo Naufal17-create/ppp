@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Naufal — Fullstack Web Developer & Creative Engineer</title>
+  
+  <!-- SEO & Open Graph Meta Tags -->
+  <meta name="description" content="Portfolio web modern Muhammad Naufal - Fullstack Web Developer & Creative Engineer berpengalaman dalam React, Next.js, TypeScript, Node.js, dan UI/UX modern.">
+  <meta name="keywords" content="Muhammad Naufal, Naufal, Fullstack Developer, Web Developer Indonesia, React, Next.js, Portfolio, Frontend, Backend">
+  <meta name="author" content="Muhammad Naufal">
+  <meta property="og:title" content="Muhammad Naufal — Fullstack Web Developer Portfolio">
+  <meta property="og:description" content="Membangun solusi web mutakhir, performa tinggi, dan pengalaman digital yang berkesan.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/naufal-avatar.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/music-player.css">
+</head>
+<body data-theme="violet">
+
+  <!-- Interactive Background Canvas & Ambient Glow Orbs -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="ambient-orb ambient-orb-1 animate-float-slow"></div>
+  <div class="ambient-orb ambient-orb-2 animate-float-reverse"></div>
+
+  <!-- =========================================================================
+       NAVIGATION BAR
+       ========================================================================= -->
+  <header class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-badge">N</span>
+        <span>Naufal<span style="color: var(--accent);">.dev</span></span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link">Tentang</a>
+        <a href="#skills" class="nav-link">Keahlian</a>
+        <a href="#projects" class="nav-link">Proyek</a>
+        <a href="#music-lounge" class="nav-link">Musik 🎵</a>
+        <a href="#terminal" class="nav-link">Terminal</a>
+        <a href="#experience" class="nav-link">Pengalaman</a>
+        <a href="#contact" class="nav-link">Kontak</a>
+      </nav>
+
+      <!-- Nav Actions (Theme, Sound, CTA) -->
+      <div class="nav-actions">
+        <!-- Audio Synth Toggle -->
+        <button id="sound-toggle-btn" class="icon-btn" aria-label="Toggle UI Sound" title="Aktifkan/Nonaktifkan Suara UI">
+          <span>🔇</span>
+        </button>
+
+        <!-- Theme Switcher Dropdown -->
+        <div class="theme-picker-wrapper">
+          <button id="theme-toggle-btn" class="icon-btn" aria-label="Ganti Tema Warna" title="Pilih Tema Warna">
+            🎨
+          </button>
+          <div class="theme-dropdown" id="theme-dropdown">
+            <button class="theme-opt-btn" data-set-theme="violet">
+              <span class="theme-dot" style="background:#6366f1;"></span> Cyber Violet
+            </button>
+            <button class="theme-opt-btn" data-set-theme="emerald">
+              <span class="theme-dot" style="background:#10b981;"></span> Emerald Matrix
+            </button>
+            <button class="theme-opt-btn" data-set-theme="blue">
+              <span class="theme-dot" style="background:#3b82f6;"></span> Electric Blue
+            </button>
+            <button class="theme-opt-btn" data-set-theme="amber">
+              <span class="theme-dot" style="background:#f59e0b;"></span> Sunset Amber
+            </button>
+            <button class="theme-opt-btn" data-set-theme="rose">
+              <span class="theme-dot" style="background:#f43f5e;"></span> Neon Rose
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Hire CTA -->
+        <a href="#contact" class="btn btn-primary btn-sm nav-hire-btn">
+          Hire Me
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Buka Menu Navigasi">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       HERO SECTION
+       ========================================================================= -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Hero Left Column: Info & CTAs -->
+        <div class="hero-content">
+          <div class="hero-badge-wrap">
+            <div class="status-badge">
+              <span class="radar-dot animate-ping-radar"></span>
+              <span>Tersedia untuk Proyek Baru &amp; Full-time</span>
+            </div>
+            <span class="live-clock-pill">
+              <span>📍 Jakarta, ID</span>
+              <span style="opacity:0.4;">|</span>
+              <span id="live-clock">--:--:-- WIB</span>
+            </span>
+          </div>
+
+          <h1 class="hero-title">
+            Membangun Web Impian Bersama
+            <span class="gradient-text">Muhammad Naufal</span>
+          </h1>
+
+          <div style="font-size: 1.35rem; font-weight: 700; margin-bottom: 1.25rem;">
+            Saya seorang <span class="typewriter-wrap" id="typewriter-text"></span><span class="typewriter-cursor"></span>
+          </div>
+
+          <p class="hero-bio">
+            Mengkombinasikan ketajaman rekayasa kode backend yang andal dengan estetika antarmuka modern yang memikat pengguna. Siap mentransformasikan ide Anda menjadi produk digital kelas dunia.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              <span>🚀 Eksplorasi Proyek</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <span>💬 Hubungi Saya</span>
+            </a>
+            <a href="mailto:naufal.dev.contact@gmail.com?subject=Inquiry%20Kerja%20Sama" class="btn btn-outline">
+              <span>📄 Unduh CV / Brief</span>
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <span style="font-size:0.825rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; font-weight:700;">Connect:</span>
+            <a href="https://github.com" target="_blank" rel="noopener" class="social-pill" title="GitHub">
+              <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-pill" title="LinkedIn">
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-pill" title="Instagram">
+              <span>Instagram</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Developer Avatar Card & Interactive Chips -->
+        <div class="hero-visual-card">
+          <div class="floating-chip chip-1 animate-badge-bounce">
+            <span>⚡</span>
+            <span>Next.js &amp; React Specialist</span>
+          </div>
+
+          <div class="avatar-glass-frame">
+            <div class="avatar-img-container">
+              <img src="assets/images/naufal-avatar.svg" alt="Muhammad Naufal Avatar Profile">
+            </div>
+          </div>
+
+          <div class="floating-chip chip-2 animate-badge-bounce" style="animation-delay: -2s;">
+            <span>🛡️</span>
+            <span>Scalable Clean Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats Counter Row -->
+      <div class="hero-stats-row" id="stats-row">
+        <!-- Rendered via js/main.js from data -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       INTERACTIVE TERMINAL / CODE PLAYGROUND SECTION
+       ========================================================================= -->
+  <section id="terminal" style="padding-top: 1rem; padding-bottom: 4rem;">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 1.5rem;">
+        <span class="section-tag">Interactive Terminal</span>
+        <h2 class="section-title">Developer Console</h2>
+        <p class="section-desc">Ketik perintah di terminal interaktif di bawah atau klik opsi cepat untuk mengeksplorasi portofolio dengan cara unik!</p>
+      </div>
+
+      <div class="terminal-wrapper">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+          </div>
+          <div class="terminal-title">bash — naufal@portfolio-v2.6:~</div>
+          <div class="terminal-actions-btn">UTF-8</div>
+        </div>
+
+        <div class="terminal-body" id="terminal-body">
+          <div class="term-output-line" style="color:#94a3b8;">
+            Selamat datang di interactive terminal Naufal. Ketik <span style="color:#fcd34d;">'help'</span> untuk melihat daftar perintah.
+          </div>
+          <div class="term-output-line">
+            <span class="term-prompt">naufal@dev:~$</span> <span class="term-command">whoami</span>
+          </div>
+          <div class="term-output-line" style="color:#a5b4fc;">
+            Muhammad Naufal — Fullstack Web Developer &amp; Creative Engineer. Siap membantu proyek digital Anda!
+          </div>
+        </div>
+
+        <div class="term-help-hints">
+          <span style="color:var(--text-dim); align-self:center;">Pintas Cepat:</span>
+          <button class="term-pill" data-cmd="skills">skills</button>
+          <button class="term-pill" data-cmd="projects">projects</button>
+          <button class="term-pill" data-cmd="music">music 🎵</button>
+          <button class="term-pill" data-cmd="play">play ▶</button>
+          <button class="term-pill" data-cmd="contact">contact</button>
+          <button class="term-pill" data-cmd="theme emerald">matrix</button>
+          <button class="term-pill" data-cmd="clear">clear</button>
+        </div>
+
+        <div class="terminal-input-row" style="padding: 0.75rem 1.25rem; background:#0b0f19;">
+          <span class="term-prompt">naufal@dev:~$</span>
+          <input type="text" id="terminal-input" class="term-input" placeholder="Ketik perintah (e.g. 'help', 'skills', 'projects')..." autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       ABOUT ME SECTION
+       ========================================================================= -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-card-fancy">
+          <span class="section-tag">Filosofi &amp; Visi</span>
+          <h2 class="section-title" style="font-size: 2.2rem;">Kombinasi Rekayasa Kode Bersih &amp; Desain Elegan</h2>
+          <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+            Saya percaya bahwa sebuah website bukan hanya barisan kode di server, melainkan representasi visual identitas bisnis dan jembatan interaksi terbaik dengan pelanggan.
+          </p>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+            Setiap baris kode ditulis dengan standar Clean Code, modular, teruji, dan berorientasi pada kecepatan akses maksimal di segala jenis perangkat.
+          </p>
+
+          <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+            <div style="background:var(--bg-surface-elevated); padding:0.6rem 1rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <div style="font-size:0.75rem; color:var(--text-dim);">Fokus Utama</div>
+              <div style="font-weight:700; color:var(--primary-light);">Fullstack Web &amp; API</div>
+            </div>
+            <div style="background:var(--bg-surface-elevated); padding:0.6rem 1rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <div style="font-size:0.75rem; color:var(--text-dim);">Pendidikan</div>
+              <div style="font-weight:700; color:var(--accent);">S.Kom Teknik Informatika</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4-Feature Highlights Grid -->
+        <div class="about-features-list">
+          <div class="about-feature-box">
+            <div class="about-feature-icon">💻</div>
+            <h3 class="about-feature-title">Modern Frontend</h3>
+            <p class="about-feature-desc">Membangun UI responsif, interaktif, dan mulus menggunakan React, Next.js, dan Tailwind CSS.</p>
+          </div>
+
+          <div class="about-feature-box">
+            <div class="about-feature-icon">⚙️</div>
+            <h3 class="about-feature-title">Reliable Backend</h3>
+            <p class="about-feature-desc">Perancangan arsitektur API RESTful dan microservice yang aman dengan Node.js dan database SQL/NoSQL.</p>
+          </div>
+
+          <div class="about-feature-box">
+            <div class="about-feature-icon">🚀</div>
+            <h3 class="about-feature-title">High Performance</h3>
+            <p class="about-feature-desc">Optimasi Lighthouse score 95+, asset compression, caching, dan server-side rendering ultra-cepat.</p>
+          </div>
+
+          <div class="about-feature-box">
+            <div class="about-feature-icon">🎨</div>
+            <h3 class="about-feature-title">Pixel-Perfect UI/UX</h3>
+            <p class="about-feature-desc">Implementasi presisi dari rancangan Figma ke dalam web interaktif dengan micro-animations berkelas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SKILLS MATRIX & TECH STACK SECTION
+       ========================================================================= -->
+  <section id="skills" style="background: rgba(15, 23, 42, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Keahlian Teknis</span>
+        <h2 class="section-title">Teknologi &amp; Toolkit Andalan</h2>
+        <p class="section-desc">Alat dan bahasa pemrograman yang saya gunakan setiap hari untuk membangun ekosistem digital modern.</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="skills-tabs">
+        <button class="tab-btn active" data-category="frontend">Frontend Development</button>
+        <button class="tab-btn" data-category="backend">Backend &amp; Database</button>
+        <button class="tab-btn" data-category="toolsAndDevOps">DevOps &amp; Tools</button>
+      </div>
+
+      <!-- Skills Cards Grid (Rendered by JS) -->
+      <div class="skills-grid" id="skills-container"></div>
+    </div>
+
+    <!-- Infinite Marquee Strip -->
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+        <span class="marquee-item">⚛️ React</span>
+        <span class="marquee-item">▲ Next.js 14</span>
+        <span class="marquee-item">🔷 TypeScript</span>
+        <span class="marquee-item">🌊 Tailwind CSS</span>
+        <span class="marquee-item">🟢 Node.js</span>
+        <span class="marquee-item">🐘 PostgreSQL</span>
+        <span class="marquee-item">🍃 MongoDB</span>
+        <span class="marquee-item">⚡ Express.js</span>
+        <span class="marquee-item">🐳 Docker</span>
+        <span class="marquee-item">🐙 Git &amp; GitHub</span>
+        <span class="marquee-item">💎 Prisma ORM</span>
+        <span class="marquee-item">🎨 Figma</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="marquee-item">⚛️ React</span>
+        <span class="marquee-item">▲ Next.js 14</span>
+        <span class="marquee-item">🔷 TypeScript</span>
+        <span class="marquee-item">🌊 Tailwind CSS</span>
+        <span class="marquee-item">🟢 Node.js</span>
+        <span class="marquee-item">🐘 PostgreSQL</span>
+        <span class="marquee-item">🍃 MongoDB</span>
+        <span class="marquee-item">⚡ Express.js</span>
+        <span class="marquee-item">🐳 Docker</span>
+        <span class="marquee-item">🐙 Git &amp; GitHub</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FEATURED PROJECTS SECTION
+       ========================================================================= -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Showcase Portofolio</span>
+        <h2 class="section-title">Karya &amp; Proyek Unggulan</h2>
+        <p class="section-desc">Kumpulan proyek web pilihan yang telah dibangun dengan standar industri, performa tinggi, dan dampak nyata.</p>
+      </div>
+
+      <!-- Project Filter Pills -->
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">Semua Proyek</button>
+        <button class="filter-btn" data-filter="fullstack">Fullstack</button>
+        <button class="filter-btn" data-filter="frontend">Frontend</button>
+        <button class="filter-btn" data-filter="webapp">Web App</button>
+        <button class="filter-btn" data-filter="uiux">UI/UX Creative</button>
+      </div>
+
+      <!-- Projects Cards Grid (Rendered by JS) -->
+      <div class="projects-grid" id="projects-grid"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       CYBERPULSE MUSIC LOUNGE & FAVORITE TRACKS SECTION
+       ========================================================================= -->
+  <section id="music-lounge" style="background: rgba(15, 23, 42, 0.5);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Audio &amp; Playlist Lounge</span>
+        <h2 class="section-title">Teman Coding &amp; Lagu Favorit Naufal</h2>
+        <p class="section-desc">Musik santai pilihan peneman sesi koding dan eksplorasi ide. Dengarkan langsung di web ini agar suasana berselancar tidak membosankan!</p>
+        
+        <div class="music-lounge-header-actions">
+          <button class="btn btn-primary btn-sm" id="btn-start-welcome-music">
+            <span>🎧 Putar Musik Sekarang</span>
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btn-open-recommend-modal">
+            <span>🎶 Rekomendasikan Lagu ke Naufal</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Music Cards Grid (Rendered by js/music-player.js) -->
+      <div class="music-lounge-grid" id="music-lounge-grid"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       WORK EXPERIENCE & EDUCATION TIMELINE
+       ========================================================================= -->
+  <section id="experience" style="background: rgba(15, 23, 42, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Jejak Karir</span>
+        <h2 class="section-title">Pengalaman &amp; Pendidikan</h2>
+        <p class="section-desc">Perjalanan profesional dan dedikasi berkelanjutan dalam industri rekayasa perangkat lunak.</p>
+      </div>
+
+      <div class="timeline-wrapper" id="experience-timeline">
+        <!-- Rendered by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       CLIENT TESTIMONIALS SECTION
+       ========================================================================= -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Testimoni Klien</span>
+        <h2 class="section-title">Apa Kata Mereka?</h2>
+        <p class="section-desc">Kepuasan dan pengalaman kolaborasi bersama klien dan rekan kerja.</p>
+      </div>
+
+      <div class="testimonials-grid" id="testimonials-grid">
+        <!-- Rendered by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FAQ SECTION
+       ========================================================================= -->
+  <section id="faqs" style="background: rgba(15, 23, 42, 0.3);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Pertanyaan Umum</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-desc">Jawaban untuk pertanyaan yang paling sering diajukan mengenai kolaborasi proyek web.</p>
+      </div>
+
+      <div class="faq-accordion" id="faq-accordion">
+        <!-- Rendered by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       CONTACT & HIRE ME SECTION
+       ========================================================================= -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Mari Terhubung</span>
+        <h2 class="section-title">Punya Ide Proyek Hebat?</h2>
+        <p class="section-desc">Mari wujudkan bersama! Kirimkan pesan atau hubungi saya langsung melalui WhatsApp atau Email.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Left Information -->
+        <div class="contact-info-panel">
+          <div class="contact-card-box">
+            <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:1rem;">Informasi Kontak Langsung</h3>
+            <p style="color:var(--text-muted); font-size:0.925rem; margin-bottom:1.5rem;">
+              Saya siap diajak berdiskusi tentang freelance web development, konsultasi arsitektur frontend/backend, maupun peluang kerja tim.
+            </p>
+
+            <div class="contact-channel-item">
+              <div class="channel-icon">📧</div>
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">Email Resmi</div>
+                <div style="font-weight:700; color:var(--text-main);">naufal.dev.contact@gmail.com</div>
+              </div>
+            </div>
+
+            <div class="contact-channel-item">
+              <div class="channel-icon">💬</div>
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">WhatsApp Chat</div>
+                <div style="font-weight:700; color:var(--success);">+62 812-3456-7890</div>
+              </div>
+            </div>
+
+            <div class="contact-channel-item">
+              <div class="channel-icon">📍</div>
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">Lokasi Kerja</div>
+                <div style="font-weight:700; color:var(--text-main);">Jakarta, Indonesia (Available Remote Worldwide)</div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1.5rem;">
+              <button class="copy-email-btn" id="copy-email-btn">
+                <span>📋 Salin Alamat Email</span>
+              </button>
+              <button class="btn btn-primary btn-sm" id="wa-quick-btn" style="background:#059669; border-color:#10b981;">
+                <span>💬 Chat via WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Right: Working Interactive Form -->
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="form-name" class="form-label">Nama Lengkap *</label>
+            <input type="text" id="form-name" class="form-control" placeholder="Contoh: Budi Santoso" required>
+          </div>
+
+          <div class="form-group">
+            <label for="form-email" class="form-label">Alamat Email *</label>
+            <input type="email" id="form-email" class="form-control" placeholder="nama@perusahaan.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="form-subject" class="form-label">Subjek Proyek</label>
+            <input type="text" id="form-subject" class="form-control" placeholder="Pembuatan Website Company Profile / Web App">
+          </div>
+
+          <div class="form-group">
+            <label for="form-message" class="form-label">Deskripsi Kebutuhan *</label>
+            <textarea id="form-message" class="form-control" placeholder="Ceritakan ide, estimasi deadline, dan fitur yang ingin dibuat..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            <span>🚀 Kirim Pesan Sekarang</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        © 2026 <strong>Muhammad Naufal</strong>. Dirancang &amp; dikodekan dengan penuh ketelitian.
+      </div>
+      <div style="display:flex; gap:1.5rem; align-items:center;">
+        <a href="#hero" class="nav-link" style="font-size:0.85rem;">Kembali ke Atas ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       PROJECT DETAIL MODAL
+       ========================================================================= -->
+  <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Tutup Detail Proyek">✕</button>
+      <div class="modal-thumb">
+        <img id="modal-thumb-img" src="" alt="Project Showcase">
+      </div>
+      <div class="modal-content">
+        <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem;">
+          <span class="project-badge-cat" id="modal-category">Category</span>
+        </div>
+        <h2 id="modal-title" style="font-family:var(--font-heading); font-size:1.75rem; margin-bottom:0.75rem;">Project Title</h2>
+        <div class="modal-metrics-box" id="modal-metrics">Metrics badge</div>
+        <p id="modal-desc" style="color:var(--text-muted); line-height:1.7; margin-bottom:1.5rem;">Project detailed description</p>
+
+        <h4 style="font-size:1.05rem; margin-bottom:0.75rem;">Fitur Utama:</h4>
+        <ul class="modal-features-list" id="modal-features"></ul>
+
+        <div style="margin-top:1.5rem; margin-bottom:2rem;">
+          <h4 style="font-size:0.95rem; margin-bottom:0.5rem;">Teknologi yang Digunakan:</h4>
+          <div class="project-tags" id="modal-tags"></div>
+        </div>
+
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a id="modal-live-btn" href="#" target="_blank" rel="noopener" class="btn btn-primary">
+            <span>↗ Buka Live Demo</span>
+          </a>
+          <a id="modal-github-btn" href="#" target="_blank" rel="noopener" class="btn btn-secondary">
+            <span>&lt;/&gt; Lihat Repository</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Song Recommendation Modal -->
+  <div class="modal-overlay" id="recommend-modal" role="dialog" aria-modal="true">
+    <div class="modal-card" style="max-width: 500px; padding: 2rem;">
+      <button class="modal-close-btn" id="close-recommend-modal" aria-label="Tutup">✕</button>
+      <h3 style="font-family:var(--font-heading); font-size:1.35rem; margin-bottom:0.4rem;">🎶 Rekomendasikan Lagu</h3>
+      <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:1.5rem;">
+        Punya lagu favorit yang enak didengar pas koding? Bagikan ke Naufal di sini!
+      </p>
+
+      <form id="recommend-song-form">
+        <div class="form-group">
+          <label for="rec-title" class="form-label">Judul Lagu *</label>
+          <input type="text" id="rec-title" class="form-control" placeholder="Contoh: Resonance / After Dark" required>
+        </div>
+        <div class="form-group">
+          <label for="rec-artist" class="form-label">Nama Artis / Band *</label>
+          <input type="text" id="rec-artist" class="form-control" placeholder="Contoh: HOME / Mr. Kitty" required>
+        </div>
+        <div class="form-group">
+          <label for="rec-name" class="form-label">Nama / Sosmed Anda (Opsional)</label>
+          <input type="text" id="rec-name" class="form-control" placeholder="Contoh: Rizky @rizkydev">
+        </div>
+        <div class="form-group">
+          <label for="rec-note" class="form-label">Catatan Singkat</label>
+          <input type="text" id="rec-note" class="form-control" placeholder="Enak banget buat fokus mikir logika koding!">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.75rem;">
+          <span>🚀 Kirim Rekomendasi</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Floating Welcome Music Prompt (Bottom Left) -->
+  <div class="music-welcome-prompt" id="music-welcome-prompt">
+    <div class="prompt-icon">🎧</div>
+    <div class="prompt-text">
+      <strong>Mau dengar musik santai?</strong><br>
+      Putar playlist lo-fi &amp; synthwave coding Naufal!
+    </div>
+    <div class="prompt-actions">
+      <button class="btn btn-primary btn-sm" id="btn-start-welcome-music" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">
+        Putar
+      </button>
+      <button class="icon-btn" id="btn-close-music-prompt" style="width:28px;height:28px;" title="Tutup">
+        ✕
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/projects-data.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/music-player.js"></script>
+</body>
+</html>
